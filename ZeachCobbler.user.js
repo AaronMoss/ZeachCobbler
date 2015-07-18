@@ -100,7 +100,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
 
     // Options that will always be reset on reload
     var zoomFactor = 10;
-    var isGrazing = false;
+    var isGrazing = true;
     var serverIP = "";
     var showVisualCues = true;
 
@@ -1698,17 +1698,14 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
 
     function setCellName(cell, d) {
         if (showVisualCues) {
-            var pct;
             if (_.size(zeach.myPoints) > 1 && _.contains(zeach.myIDs, cell.id)) {
                 var oldestSplitTime = _.min(zeach.myPoints, "splitTime");
                 if(oldestSplitTime.id == cell.id){
                     d.setValue(cell.name);
                 } else {
-                    pct = (cell.nSize * cell.nSize) * 100 / (getSelectedBlob().nSize * getSelectedBlob().nSize);
-                    d.setValue(calcTTR(cell) + " ttr" + " " + ~~(pct) + "%");}
+                    d.setValue(calcTTR(cell) + " time remaining");}
             } else if (!cell.isVirus && isPlayerAlive()) {
-                pct = ~~((cell.nSize * cell.nSize) * 100 / (getSelectedBlob().nSize * getSelectedBlob().nSize));
-                d.setValue(cell.name + " " + pct.toString() + "%");
+                d.setValue(cell.name);
             }
         }
     }
