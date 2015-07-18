@@ -1821,6 +1821,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
                 //MARK: OVERLAY IN ESC
                 if (f("#overlays").is(":visible")) {
                     f("#overlays").fadeOut(200);
+                    V = false;
                 } else {
                     Oa(true); //Oa makes overlay appear?
                 }
