@@ -75,7 +75,7 @@
 // @grant        GM_xmlhttpRequest
 
 // ==/UserScript==
-var _version_ = GM_info.script.version;
+var _version_ = 0.1;
 
 var debugMonkeyReleaseMessage = "<h3>No one sneeze!</h3><p>" +
 "The code base for ZC is a house of cards right now. Changes to the official code base can break the code at any time. " +
@@ -101,7 +101,6 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
     // Options that will always be reset on reload
     var zoomFactor = 10;
     var isGrazing = true;
-    var serverIP = "";
     var showVisualCues = true;
 
     // Game State & Info
@@ -1086,29 +1085,19 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
 
     function displayDebugText(ctx, agarTextFunction) {
 
-        if(0 >= cobbler.debugLevel) {
-            return;
-        }
-
         var textSize = 15;
         var debugStrings = [];
-        if(1 <= cobbler.debugLevel) {
-            debugStrings.push("v " + _version_);
-            debugStrings.push("Server: " + serverIP);
-
-            debugStrings.push("G - grazing: " + (isGrazing ? (1 == isGrazing) ? "Old" : "New" : "Off"));
+        debugStrings.push("v" + _version_);
+        debugStrings.push("G - grazing: " + (isGrazing ? "On" : "Off"));
+        debugStrings.push("M - freeze mouse: " + (suspendMouseUpdates ? "On" : "Off"));
+        debugStrings.push("P - grazing target fixation :" + (grazingTargetFixation ? "On" : "Off"));
+        if(grazingTargetFixation){ debugStrings.push("  (T) to retarget");}
+        debugStrings.push("O - right click: " + (cobbler.rightClickFires ? "Fires @ virus" : "Default"))
+        debugStrings.push("Z - zoom: " + zoomFactor.toString());
+        if (isPlayerAlive()) {
+            debugStrings.push("Location: " + Math.floor(getSelectedBlob().x) + ", " + Math.floor(getSelectedBlob().y));
         }
-        if(2 <= cobbler.debugLevel) {
-            debugStrings.push("M - suspend mouse: " + (suspendMouseUpdates ? "On" : "Off"));
-            debugStrings.push("P - grazing target fixation :" + (grazingTargetFixation ? "On" : "Off"));
-            if(grazingTargetFixation){ debugStrings.push("  (T) to retarget");}
-            debugStrings.push("O - right click: " + (cobbler.rightClickFires ? "Fires @ virus" : "Default"))
-            debugStrings.push("Z - zoom: " + zoomFactor.toString());
-            if (isPlayerAlive()) {
-                debugStrings.push("Location: " + Math.floor(getSelectedBlob().x) + ", " + Math.floor(getSelectedBlob().y));
-            }
 
-        }
         var offsetValue = 20;
         var text = new agarTextFunction(textSize, (zeach.isNightMode ? '#F2FBFF' : '#111111'));
 
@@ -2046,7 +2035,6 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
                         alert(c[2]);
                     }
                     Aa("ws://" + c[0], c[1]);
-                    /*new*/ serverIP = a[0];
                 }
             },
             dataType : "text",
@@ -4002,15 +3990,12 @@ jQuery(".agario-promo").hide();
 jQuery('#overlays').append('<div id="stats" style="position: absolute; top:50%; left: 450px; width: 750px; height:673px; background-color: #FFFFFF; ' +
     'border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%)">'+
     '<ul class="nav nav-pills" role="tablist">' +
-    '<li role="presentation" class="active" > <a href="#page0" id="newsTab"   role="tab" data-toggle="tab">News</a></li>' +
     '<li role="presentation">                 <a href="#page1" id="statsTab"  role="tab" data-toggle="tab">Stats</a></li>' +
-    '<li role="presentation">                 <a href="#page2" id="configTab" role="tab" data-toggle="tab">Extended Options</a></li>' +
-    '<li role="presentation">                 <a href="#page3" id="helpTab" role="tab" data-toggle="tab">Help</a></li>' +
+    '<li role="presentation">                 <a href="#page2" id="configTab" role="tab" data-toggle="tab">Settings</a></li>' +
         //'<li role="presentation"><a href="#page3" role="tab" data-toggle="tab">IP Connect</a></li>' +
     '</ul>'+
 
     '<div id="bigbox" class="tab-content">' +
-    '<div id="page0" role="tabpanel" class="tab-pane active">'+ debugMonkeyReleaseMessage +'</div>' +
 
     '<div id="page1" role="tabpanel" class="tab-pane">' +
     '<div class="row">' +
@@ -4032,26 +4017,6 @@ jQuery('#overlays').append('<div id="stats" style="position: absolute; top:50%; 
     '<div id="col1" class="col-sm-4 checkbox" style="padding-left: 5%; padding-right: 1%;"></div>' +
     '<div id="col2" class="col-sm-4" style="padding-left: 2%; padding-right: 2%;"></div>' +
     '<div id="col3" class="col-sm-4" style="padding-left: 2%; padding-right: 5%;"></div>' +
-    '</div>' +
-    '</div>'+
-    '<div id="page3" role="tabpanel" class="tab-pane">' +
-    '<div class="row">' +
-    '<div id="col1" class="col-sm-6" style="padding-left: 5%; padding-right: 1%;"><h3>Keys</h3><ul>' +
-    '   <li><B>TAB</B> - When split switches selected blob</li>' +
-    '   <li><B>A</B> - Toggle Acid mode</li>' +
-    '   <li><B>C</B> - Toggle display of visual cues</li>' +
-    '   <li><B>G</B> - Toggle new grazer (better overall)</li>' +
-    '   <li><B>H</B> - Toggle old grazer (slightly better early on)' +
-    '   <li><B>E</B> - Fire at virus near cursor</li>' +
-    '   <li><B>R</B> - Fire at virus near selected blob (virus is highlighted in red)</li>' +
-    '   <li><B>M</B> - Enables/Disables mouse input</li>' +
-    '   <li><B>Z</B> - Zoom in/zoom out</li>' +
-    '   <li><B>1...7</B> - Selecte n-th blob sorted by size</li>' +
-    '   <li><B>Click</B> - Lock currently selected blob (if blob locking enabled)</li>' +
-    '   <li><B>S</B> - Unlock all blobs (if blob locking enabled)</li>' +
-    '</ul></div>' +
-    '<div id="col2" class="col-sm-6" style="padding-left: 5%; padding-right: 2%;"><h3></h3></div>' +
-        //'<div id="page3" role="tabpanel" class="tab-pane"><h3>gcommer IP connect</h3></div>' +
     '</div>' +
     '</div>');
 jQuery(".agario-profile-panel").appendTo("#XPArea");
