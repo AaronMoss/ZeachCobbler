@@ -3990,14 +3990,14 @@ jQuery(".agario-promo").hide();
 jQuery('#overlays').append('<div id="stats" style="position: absolute; top:50%; left: 450px; width: 750px; height:673px; background-color: #FFFFFF; ' +
     'border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%)">'+
     '<ul class="nav nav-pills" role="tablist">' +
-    '<li role="presentation">                 <a href="#page1" id="statsTab"  role="tab" data-toggle="tab">Stats</a></li>' +
-    '<li role="presentation">                 <a href="#page2" id="configTab" role="tab" data-toggle="tab">Settings</a></li>' +
+    '<li role="presentation"><a href="#page1" id="configTab" role="tab" data-toggle="tab">Settings</a></li>' +
+    '<li role="presentation"><a href="#page2" id="statsTab"  role="tab" data-toggle="tab">Stats</a></li>' +
         //'<li role="presentation"><a href="#page3" role="tab" data-toggle="tab">IP Connect</a></li>' +
     '</ul>'+
 
     '<div id="bigbox" class="tab-content">' +
 
-    '<div id="page1" role="tabpanel" class="tab-pane">' +
+    '<div id="page2" role="tabpanel" class="tab-pane">' +
     '<div class="row">' +
     '<div id="statArea" class="col-sm-6" style="vertical-align:top;"></div>' +
     '<div id="pieArea" class="col-sm-5" style="vertical-align: top; height:250px;"></div>' +
@@ -4012,7 +4012,7 @@ jQuery('#overlays').append('<div id="stats" style="position: absolute; top:50%; 
     '<div id="XPArea" class="col-sm-4"></div>' +
     '</div>' +
     '</div>' +
-    '<div id="page2" role="tabpanel" class="tab-pane">' +
+    '<div id="page1" role="tabpanel" class="tab-pane">' +
     '<div class="row">' +
     '<div id="col1" class="col-sm-4 checkbox" style="padding-left: 5%; padding-right: 1%;"></div>' +
     '<div id="col2" class="col-sm-4" style="padding-left: 2%; padding-right: 2%;"></div>' +
