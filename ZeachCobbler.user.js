@@ -100,7 +100,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
 
     // Options that will always be reset on reload
     var zoomFactor = 10;
-    var isGrazing = true;
+    var isGrazing = false;
     var showVisualCues = true;
 
     // Game State & Info
@@ -1820,7 +1820,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
             if (27 == e.keyCode) {
                 //MARK: OVERLAY IN ESC
                 if (f("#overlays").is(":visible")) {
-                    f("#overlays").fadeOut(3E3);
+                    f("#overlays").fadeOut(200);
                 } else {
                     Oa(true); //Oa makes overlay appear?
                 }
