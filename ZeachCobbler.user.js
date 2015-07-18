@@ -1819,10 +1819,10 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
             }
             if (27 == e.keyCode) {
                 //MARK: OVERLAY IN ESC
-                if (V) {
-                    f("#overlays").fadeIn(3E3);
+                if (f("#overlays").is(":visible")) {
+                    f("#overlays").fadeOut(3E3);
                 } else {
-                    Oa(false); //Oa makes overlay appear?
+                    Oa(true); //Oa makes overlay appear?
                 }
             }
             /*new*/customKeyDownEvents(e);
