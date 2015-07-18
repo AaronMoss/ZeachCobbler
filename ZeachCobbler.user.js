@@ -1818,8 +1818,12 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
                 }
             }
             if (27 == e.keyCode) {
-
-                Oa(false); //Oa makes overlay appear?
+                //MARK: OVERLAY IN ESC
+                if (V) {
+                    f("#overlays").fadeIn(a ? 200 : 3E3);
+                } else {
+                    Oa(false); //Oa makes overlay appear?
+                }
             }
             /*new*/customKeyDownEvents(e);
         };
