@@ -1818,7 +1818,8 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
                 }
             }
             if (27 == e.keyCode) {
-                Oa(true);
+
+                Oa(false); //Oa makes overlay appear?
             }
             /*new*/customKeyDownEvents(e);
         };
