@@ -1820,7 +1820,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
             if (27 == e.keyCode) {
                 //MARK: OVERLAY IN ESC
                 if (V) {
-                    f("#overlays").fadeIn(a ? 200 : 3E3);
+                    f("#overlays").fadeIn(3E3);
                 } else {
                     Oa(false); //Oa makes overlay appear?
                 }
