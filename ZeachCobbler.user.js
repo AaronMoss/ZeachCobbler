@@ -143,7 +143,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
         set isAcid(val)         {this._isAcid = val; setAcid(val);},
         get isAcid()            {return this._isAcid;},
         minimapScaleCurrentValue : 1,
-        "displayMiniMap" : true,
+        "displayMiniMap" : true
 
     };
     // utility function to simplify creation of options whose state should be persisted to disk
@@ -182,7 +182,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
             "miniMapScaleValue" : 64,
             "enableBlobLock"    : false,
             'nextOnBlobLock'    : false,
-            'rightClickFires'   : false,
+            'rightClickFires'   : false
         };
         simpleSavedSettings(optionsAndDefaults);
     }
@@ -223,7 +223,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
         get Cell()          {return aa;},        //
         // These never existed before but are useful
         get mapWidth()      {return  ~~(Math.abs(zeach.mapLeft) + zeach.mapRight);},
-        get mapHeight()  {return  ~~(Math.abs(zeach.mapTop) + zeach.mapBottom);},
+        get mapHeight()  {return  ~~(Math.abs(zeach.mapTop) + zeach.mapBottom);}
     };
 
 
@@ -232,7 +232,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
             'setValue'   : 'C',                 //
             'render'     : 'L',                 //
             'setScale'   : 'ea',                //
-            'setSize'    : 'M',                 //
+            'setSize'    : 'M'                 //
         };
         _.forEach(canvasElementPropMap, function(newPropName,oldPropName){
             Object.defineProperty(objPrototype, oldPropName, {
@@ -343,7 +343,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
             "x": zeach.mouseX2,
             "y": zeach.mouseY2,
             "nx": zeach.mouseX2,
-            "ny": zeach.mouseY2,
+            "ny": zeach.mouseY2
         };
     }
 
@@ -534,7 +534,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
                     id : id,
                     v: val / len,
                     dx: y * (this.nx * y - this.ny * x) / (lensq * len),
-                    dy: x * (this.ny * x - this.nx * y) / (lensq * len),
+                    dy: x * (this.ny * x - this.nx * y) / (lensq * len)
                 };
             } else {
                 return {id: id, v: val / this.radius, dx: this.nx, dy: this.ny};
@@ -661,7 +661,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
                 size : cell.nSize,
                 per_food: per_food,
                 per_threat: per_threat,
-                cumulatives: [ { x: 0, y: 0}, { x: 0, y: 0} ],
+                cumulatives: [ { x: 0, y: 0}, { x: 0, y: 0} ]
             };
             
             if (!useGradient && cell.grazingMode != 2) {
@@ -742,7 +742,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
 
                     // Distance till consuming
                     dist -= el.nSize;
-                    dist += cell.nSize /　3.0;
+                    dist += cell.nSize / 3.0;
                     dist -= 11;
 
                     dist = Math.max(dist, 0.01);
@@ -1231,7 +1231,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
             drawLine(ctx,playerBlob,
                 {
                     x: playerBlob.x + (cumulatives[0].x + cumulatives[1].x) / maxSize,
-                    y: playerBlob.y + (cumulatives[0].y + cumulatives[1].y) / maxSize,
+                    y: playerBlob.y + (cumulatives[0].y + cumulatives[1].y) / maxSize
                 }, "gray"
             );
 
@@ -1392,7 +1392,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
         "shrek is life" : "http://i.imgur.com/QDhkr4C.jpg",
         "blueeyes" : "http://i.imgur.com/wxCfUws.jpg",
         "ygritte"  : "http://i.imgur.com/lDIFCT1.png",
-        "lord kience" : "http://i.imgur.com/b2UXk15.png",
+        "lord kience" : "http://i.imgur.com/b2UXk15.png"
     }
 
     var skinsSpecial = {
@@ -1402,7 +1402,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
         "doge  helper" : "http://i.imgur.com/FzZebpk.jpg",
         "controless " : "https://i.imgur.com/uD5SW8X.jpg",
         "sqochit" : "http://i.imgur.com/AnowvFI.jpg",
-        "drunken" : "http://i.imgur.com/JeKNRss.png",
+        "drunken" : "http://i.imgur.com/JeKNRss.png"
     };
 
 
@@ -1703,7 +1703,7 @@ jQuery("#connecting").after('<canvas id="canvas" width="800" height="600"></canv
                 if(oldestSplitTime.id == cell.id){
                     d.setValue(cell.name);
                 } else {
-                    d.setValue(calcTTR(cell) + " time remaining");}
+                    d.setValue(calcTTR(cell) + " seconds remaining");}
             } else if (!cell.isVirus && isPlayerAlive()) {
                 d.setValue(cell.name);
             }
@@ -4208,7 +4208,7 @@ function ResetStats()
         top_slot: Number.POSITIVE_INFINITY,
 
         gains: {},
-        losses: {},
+        losses: {}
     };
 }
 
@@ -4280,7 +4280,7 @@ function DrawPie(pellet, w, cells, viruses)
                 {  y: 100*pellet/total, legendText:"pellets"},
                 {  y: 100*cells/total, legendText:"cells"},
                 {  y: 100*w/total, legendText:"w"},
-                {  y: 100*viruses/total, legendText:"viruses"},
+                {  y: 100*viruses/total, legendText:"viruses"}
             ]
         }]
     });
